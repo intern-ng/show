@@ -1,6 +1,10 @@
 
-.slide p {
+.slide p, .slide ul, .slide blockquote+figcaption {
   margin-bottom: 20px;
+}
+
+.slide blockquote {
+  margin-bottom: 50px;
 }
 
 #cover {
