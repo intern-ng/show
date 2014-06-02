@@ -20,6 +20,7 @@
       <img src="pictures/cover.jpg" alt="">
     </div>
   </section>
+  <!-- 前: 系统设计与实现 -->
   <section class="slide">
     <div style="text-align: center;">
       <h2>中期报告演示文稿</h2>
@@ -29,6 +30,7 @@
       </p>
     </div>
   </section>
+  <!-- 后: 总结与整理 -->
   <section class="slide">
     <div>
       <h2>课程管理系统</h2>
@@ -40,6 +42,7 @@
       <p class="note">来自 MVVM 架构、Reactive Programming、REST 服务设计风格</p>
     </div>
   </section>
+  <!-- 研究背景知识 -->
   <section class="slide">
     <div>
       <h2>状态与交互</h2>
@@ -76,7 +79,7 @@
           <td>并联(Parallel)</td>
         </tr>
         <tr>
-          <td>难并行<mark class="note">CPS 变换</mark></td>
+          <td>难并行<mark class="note">逆 CPS 变换</mark></td>
           <td>可并行</td>
         </tr>
       </table>
@@ -85,7 +88,30 @@
   </section>
   <section class="slide">
     <div>
+      <h2>同步与异步</h2>
+      <p>很显然，课程管理系统乃至任何图形用户界面系统的用户都不会愿意系统在处理业务的时候停止与他们的交互</p>
+      <p>图形用户界面系统的交互<strong>必须</strong>使用<mark>异步编程范型</mark>实现</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>异步编程设计模式</h2>
+      <p>常见的异步编程设计模式有:</p>
+      <ul>
+        <li>基于回调的异步模式(Callback-based Asynchronous Pattern, CAP)</li>
+        <li>基于事件的异步模式(Event-based Asynchronous Pattern, EAP)</li>
+        <li>基于任务的异步模式(Task-based Asynchronous Pattern, TAP)</li>
+      </ul>
+      <p>三种模式逐级演进，封装趋于完备，但对类库的依赖也逐渐增强。</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
       <h2>事件(Event)</h2>
+      <img src="pictures/pattern-extended-handlers.svg" style="max-width: 60%; max-height: 400px; float: right;">
+      <p style="padding-top: 20px;">在异步编程范型的多种模型中 <strong>事件驱动编程 (Event-driven Programming)</strong> 是当前最常用的异步编程模型。</p>
+    </div>
+  </section>
     </div>
   </section>
 
