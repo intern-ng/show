@@ -27,6 +27,12 @@
   color: #094ab2;
 }
 
+#ending h2 {
+  color: #FFF;
+  margin: 30px 0 0;
+  font-size: 70px;
+}
+
 mark {
 
   margin-left: 0.25em;
