@@ -109,6 +109,7 @@
     <div>
       <h2>事件(Event)</h2>
       <img src="pictures/pattern-extended-handlers.svg" style="max-width: 60%; max-height: 400px; float: right;">
+      <!-- http://eventdrivenpgm.sourceforge.net/ -->
       <p style="padding-top: 20px;">在异步编程范型的多种模型中 <strong>事件驱动编程 (Event-driven Programming)</strong> 是当前最常用的异步编程模型。</p>
     </div>
   </section>
@@ -117,6 +118,7 @@
     <div>
       <h2>Model-View-Controller 模式</h2>
       <img src="pictures/pattern-mvc.svg" style="max-width: 50%; max-height: 400px; float: right;">
+      <!-- http://en.wikipedia.org/wiki/File:MVC-Process.svg -->
       <figure style="padding-top: 30px;">
         <blockquote>
           <p>MVC模式最早由Trygve Reenskaug在1978年提出 ，是施乐帕罗奥多研究中心（Xerox PARC）在20世纪80年代为程序语言Smalltalk发明的一种软件设计模式。</p>
@@ -129,6 +131,7 @@
     <div>
       <h2>Model-View-Controller 模式</h2>
       <img src="pictures/pattern-mvc.svg" style="max-width: 50%; max-height: 400px; float: right;">
+      <!-- http://en.wikipedia.org/wiki/File:MVC-Process.svg -->
       <p>使用上面的观点分析 MVC 模式:</p>
       <ul>
         <li>Model 维持状态</li>
@@ -161,6 +164,7 @@
       <h2>MVVM 与 Observer 模式</h2>
       <img src="pictures/pattern-mvvm.svg" style="max-width: 50%; max-height: 400px; float: right;">
       <p>在 Windows Presentation Framework (WPF) 中实现的 MVVM 架构应用 Observer 模式构造 Model 与 ViewModel 进行异步事件的处理。</p>
+      <p class="note">处理异步事件时需要通过 Adapter 将事件转换为 Model 属性</p>
     </div>
   </section>
   <section class="slide">
@@ -205,11 +209,102 @@
     <div>
       <h2>视图数据绑定</h2>
       <img src="pictures/mediator-example.svg" style="max-width: 50%; max-height: 400px; float: right;">
+      <!-- http://sourcemaking.com/design_patterns/mediator -->
       <p>视图数据绑定 (View Data Binding) 特性的实现利用 Mediator 模式在 View 与 ViewModel 之间根据 View 提供的参数创建 ViewModel 实例，实现单、双向绑定。</p>
     </div>
   </section>
+  <section class="slide">
+    <div>
+      <h2>Reactive Programming</h2>
+      <blockquote>Programming around data flows and the propagation of change.</blockquote>
+      <p>一种常见的 Reactive 形式是:</p>
+      <center><img src="pictures/reactive-example.png" style="max-width: 100%;"></center>
+      <!-- http://blog.csdn.net/crayondeng/article/details/20859521 -->
+    </div>
+  </section>
   <!-- 研究主题 -->
-  <!-- 后半学期毕业设计工作报告 -->
+  <section class="slide">
+    <div>
+      <h2>课程管理系统架构</h2>
+      <center><img src="pictures/architecture.svg" style="max-width: 100%; max-height: 400px;"></center>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>基于 MVVM 的课程管理系统架构</h2>
+      <center><img src="pictures/architecture-mvvm.svg" style="max-width: 100%; max-height: 400px;"></center>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ViewModel</h2>
+      <p>创建 ViewModel 逻辑有时会非常复杂:</p>
+      <center>
+        <pre style="display: inline-block; text-align: left;">
+          <code>View $B = ui.findView("B");</code>
+          <code>ViewModel B = TextViewModel($B);</code>
+          <code>ViewModel C = ConstantModel(2);</code>
+          <code>ViewModel A = SumViewModel();</code>
+          <code>A.setBinding(B, C)</code>
+          <code>Console.setBinding(A)</code>
+        </pre>
+      </center>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Functional Reactive Programming</h2>
+      <p>Functional Reactive Programming (FRP) 是使用函数式方法声明 Reactive 形式的一种编程方法。</p>
+      <p>不同于 ViewModel 给数据类添加借口的做法 FRP 使用 Monad 函数将待观测的值”包装“成为一个高阶函数。</p>
+      <p class="note">Monad 比起 ViewModel 能够观测的数据粒度更小</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Functional Reactive ViewModel</h2>
+      <p>Functional Reactive ViewModel 使用函数式方法声明 ViewModel 以及 ViewModel 之间的依赖关系。</p>
+      <center>
+        <pre style="display: inline-block; text-align: left;">
+          <code>var B = ToINT(INPUT($B));</code>
+          <code>var C = CONST(2);</code>
+          <code>var A = SUM(B, C);</code>
+          <code><mark class="comment">// 当 A 所定义的值发生改变时有 PRINT 动作</mark></code>
+          <code>PRINT(A);</code>
+        </pre>
+      </center>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Functional Reactive ViewModel</h2>
+      <pre style="float: left; margin-right: 20px;">
+        <code>function INPUT ($el) {</code>
+        <code>  return SRC(function () {</code>
+        <code>    $el.on('input', function () {</code>
+        <code>      this.resolve($el.val());</code>
+        <code>    }, this);</code>
+        <code>  });</code>
+        <code>};</code>
+      </pre>
+      <p>通过 <code>INPUT</code> 函数得到一个高阶 Monad 函数，该函数监听文本框输入事件并且将发生的事件转换为数据放入数据流。</p>
+    </div>
+  </section>
+  <!-- 毕业设计工作总结 -->
+  <section class="slide">
+    <div>
+      <h2>毕业设计工作总结</h2>
+      <ul>
+        <li>利用 MVC 架构模式实现实习实训管理系统</li>
+        <li>系统扩展到 MVVM 架构并实现课程管理系统</li>
+      </ul>
+      <hr/>
+      <ul>
+        <li>引入 FRP 方法对 ViewModel 定义进行重构</li>
+        <li>整理研究系统架构与设计模式</li>
+        <li>编写毕业设计论文</li>
+      </ul>
+    </div>
+  </section>
   <!-- 演示 -->
   <section class="slide shout active" id="demo">
     <div>
