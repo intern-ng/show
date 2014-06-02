@@ -58,6 +58,17 @@
       </p>
     </div>
   </section>
+  <!-- 演示 -->
+  <section class="slide shout" id="demo">
+    <div>
+      <h2>
+        <a href="http://interng.com/signin.html" target="_blank">
+          <img src="pictures/logo.png" style="max-width: 0.72em">
+          DEMO
+        </a>
+      </h2>
+    </div>
+  </section>
   <!-- 研究背景知识 -->
   <section class="slide">
     <div>
@@ -114,19 +125,20 @@
       <h2>异步编程设计模式</h2>
       <p>常见的异步编程设计模式有:</p>
       <ul>
-        <li>基于回调的异步模式(Callback-based Asynchronous Pattern, CAP)</li>
-        <li>基于事件的异步模式(Event-based Asynchronous Pattern, EAP)</li>
-        <li>基于任务的异步模式(Task-based Asynchronous Pattern, TAP)</li>
+        <li>基于<mark>回调</mark>的异步模式(Callback-based Asynchronous Pattern, CAP)</li>
+        <li>基于<mark>事件</mark>的异步模式(Event-based Asynchronous Pattern, EAP)</li>
+        <li>基于<mark>任务</mark>的异步模式(Task-based Asynchronous Pattern, TAP)</li>
       </ul>
       <p>三种模式逐级演进，封装趋于完备，但对类库的依赖也逐渐增强。</p>
     </div>
   </section>
   <section class="slide">
     <div>
-      <h2>事件(Event)</h2>
+      <h2>异步编程设计模式</h2>
       <img src="pictures/pattern-extended-handlers.svg" style="max-width: 60%; max-height: 400px; float: right;">
       <!-- http://eventdrivenpgm.sourceforge.net/ -->
-      <p style="padding-top: 20px;">在异步编程范型的多种模型中 <strong>事件驱动编程 (Event-driven Programming)</strong> 是当前最常用的异步编程模型。</p>
+      <p style="padding-top: 20px;">在异步编程范型的多种模型中 <strong>事件驱动编程 (Event-driven Programming)</strong> 是目前普遍使用的异步编程模型。</p>
+      <p class="note">MVVM 模式正是基于事件驱动编程模式设计的</p>
     </div>
   </section>
   <!-- MVVM 架构研究 -->
@@ -303,17 +315,6 @@
         <code>};</code>
       </pre>
       <p>通过 <code>INPUT</code> 函数得到一个高阶 Monad 函数，该函数监听文本框输入事件并且将发生的事件转换为数据放入数据流。</p>
-    </div>
-  </section>
-  <!-- 演示 -->
-  <section class="slide shout" id="demo">
-    <div>
-      <h2>
-        <a href="http://interng.com/signin.html" target="_blank">
-          <img src="pictures/logo.png" style="max-width: 0.72em">
-          DEMO
-        </a>
-      </h2>
     </div>
   </section>
   <!-- Q&A -->
